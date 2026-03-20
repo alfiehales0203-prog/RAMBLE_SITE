@@ -1,109 +1,713 @@
-<!DOCTYPE html>
-<html lang="en">
+html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramble — Privacy Policy</title>
+    <title>Ramble — Portable Audio Recording Device</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'DM Sans', -apple-system, sans-serif;
-            background: #f8f8f6;
-            color: #2c2c2a;
-            line-height: 1.7;
-            padding: 3rem 1.5rem;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        main {
-            max-width: 620px;
+        :root {
+            --color-bg: #f8f9fb;
+            --color-surface: #ffffff;
+            --color-text: #1a2332;
+            --color-text-muted: #5a6b7f;
+            --color-accent: #3b82f6;
+            --color-accent-dim: #60a5fa;
+            --color-accent-light: #dbeafe;
+            --color-border: #e1e7ef;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'IBM Plex Sans', sans-serif;
+        }
+
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Grid background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+            animation: gridFadeIn 2s ease-out forwards;
+        }
+
+        @keyframes gridFadeIn {
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 880px;
             margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
         h1 {
-            font-size: 1.6rem;
-            font-weight: 500;
-            margin-bottom: 0.4rem;
-            color: #4A5568;
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
         }
 
         h2 {
-            font-size: 1.05rem;
-            font-weight: 500;
-            margin-top: 2rem;
-            margin-bottom: 0.6rem;
-            color: #4A5568;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 16px;
+            color: var(--color-accent);
         }
 
-        p {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            color: #444;
+        /* Header */
+        header {
+            padding: 32px 0 24px;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease-out 0.2s forwards;
         }
 
-        .contact-link {
-            color: #5B8DB8;
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--color-accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 120px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .hero-text {
+            order: 1;
+        }
+
+        .hero-image {
+            order: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(59, 130, 246, 0.2));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-text {
+                order: 2;
+            }
+
+            .hero-image {
+                order: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            color: var(--color-text-muted);
+            margin-bottom: 48px;
+            max-width: 680px;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 32px;
+            background: transparent;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
             text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-link:hover {
-            text-decoration: underline;
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--color-accent);
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
         }
 
+        .cta-button:hover {
+            color: var(--color-surface);
+            border-color: var(--color-accent);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid var(--color-border);
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+            animation-delay: calc(var(--section-index) * 0.15s);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        section:nth-of-type(1) { --section-index: 1; }
+        section:nth-of-type(2) { --section-index: 2; }
+        section:nth-of-type(3) { --section-index: 3; }
+        section:nth-of-type(4) { --section-index: 4; }
+        section:nth-of-type(5) { --section-index: 5; }
+
+        .section-intro {
+            max-width: 720px;
+            margin-bottom: 40px;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            padding: 24px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            border-color: var(--color-accent-dim);
+            transform: translateY(-2px);
+        }
+
+        .feature-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .feature-item p {
+            color: var(--color-text-muted);
+            font-size: 0.938rem;
+        }
+
+        /* Use Cases */
+        .use-case-list {
+            list-style: none;
+            margin-top: 32px;
+        }
+
+        .use-case-list li {
+            padding: 20px 24px;
+            background: var(--color-surface);
+            border-left: 2px solid var(--color-accent-dim);
+            margin-bottom: 16px;
+            font-size: 1.063rem;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-list li:hover {
+            border-left-color: var(--color-accent);
+            transform: translateX(4px);
+        }
+
+        /* Specs List */
+        .specs-list {
+            list-style: none;
+            margin-top: 32px;
+            display: grid;
+            gap: 2px;
+        }
+
+        .specs-list li {
+            padding: 16px 20px;
+            background: var(--color-surface);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .specs-list li::before {
+            content: '▸';
+            color: var(--color-accent);
+            margin-right: 16px;
+            font-size: 1.125rem;
+        }
+
+        /* Design principles */
+        .principle-grid {
+            display: grid;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .principle-item {
+            padding: 28px;
+            background: var(--color-surface);
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .principle-title {
+            font-family: var(--font-mono);
+            font-size: 1.125rem;
+            margin-bottom: 12px;
+            color: var(--color-text);
+        }
+
+        .principle-description {
+            color: var(--color-text-muted);
+            font-size: 0.938rem;
+        }
+
+        /* Status bar */
+        .status-bar {
+            margin-top: 40px;
+            padding: 24px 28px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.03) 100%);
+            border: 1px solid var(--color-accent-dim);
+        }
+
+        .status-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+        }
+
+        .status-text {
+            color: var(--color-text-muted);
+            font-size: 0.938rem;
+        }
+
+        /* Footer */
         footer {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e0e0dc;
-            font-size: 0.82rem;
-            color: #aaa;
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--color-border);
+            margin-top: 80px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 1.2s forwards;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-tagline {
+            font-size: 1.25rem;
+            margin-bottom: 32px;
+            color: var(--color-text-muted);
+        }
+
+        .email-form {
+            max-width: 480px;
+            margin: 0 auto 40px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 14px 20px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-input:focus {
+            border-color: var(--color-accent-dim);
+        }
+
+        .email-input::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        .email-submit {
+            padding: 14px 28px;
+            background: transparent;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .email-submit:hover {
+            background: var(--color-accent);
+            color: var(--color-surface);
+        }
+
+        .footer-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0 80px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+        }
+
+        /* App showcase section */
+        .app-showcase {
+            background: var(--color-surface);
+            padding: 80px 0;
+            margin: 80px 0;
+        }
+
+        .app-screens {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 48px;
+        }
+
+        .screen-item {
+            text-align: center;
+        }
+
+        .screen-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .screen-item:hover img {
+            transform: translateY(-8px);
+        }
+
+        .screen-caption {
+            margin-top: 20px;
+            font-size: 0.938rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Device showcase */
+        .device-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 48px;
+        }
+
+        .device-image {
+            text-align: center;
+        }
+
+        .device-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.15));
+        }
+
+        @media (max-width: 768px) {
+            .device-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accent line decoration */
+        .accent-line {
+            width: 60px;
+            height: 2px;
+            background: var(--color-accent);
+            margin-bottom: 24px;
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <div class="logo">Ramble</div>
+        </div>
+    </header>
+
     <main>
-        <h1>Ramble — Privacy Policy</h1>
-        <p class="subtitle">Last updated: March 2026</p>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Capture your thoughts before they slip away</h1>
+                        <p class="hero-subtitle">
+                            Ramble is a pocket-sized voice recorder that helps you hold onto fleeting thoughts throughout the day. At the end of the day, sync with your phone to automatically transcribe and organize everything into your own custom categories—ideas, to-dos, recipes, names, or anything else you dream up.
+                        </p>
+                    </div>
+                    <div class="hero-image">
+                        <img src="device-back.png" alt="Ramble device - back view with clip" id="hero-device-img">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <p>Ramble is a voice recording app designed with privacy at its core. This policy explains what data the app accesses, where it goes, and what control you have over it.</p>
+        <section>
+            <div class="container">
+                <div class="accent-line"></div>
+                <h2>What It Is</h2>
+                <div class="section-intro">
+                    <p>
+                        We have over 50,000 thoughts every day, but most of them vanish before we can do anything with them. Ramble is a simple voice recorder you keep in your pocket that captures those thoughts the moment they happen—no need to pull out your phone and break your stride.
+                    </p>
+                    <p style="margin-top: 20px;">
+                        At the end of the day, sync it with your phone. Everything gets automatically transcribed, and you can sort your thoughts into custom categories: To-Do List, Recipes, Ideas, Names, Coaching Tips, Quotes from Podcasts—whatever makes sense for you. Finally, a way to actually remember and analyze what goes through your head.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-        <h2>What data does Ramble access?</h2>
-        <p>Ramble accesses your device's microphone to record voice notes. If you use the Apple Watch companion app, it also records audio on-watch and transfers recordings to your iPhone. Ramble does not access your contacts, location, camera, or any other device sensors.</p>
+        <section>
+            <div class="container">
+                <div class="accent-line"></div>
+                <h2>How It Works</h2>
+                <ul class="specs-list">
+                    <li>Quick-access button to record thoughts instantly</li>
+                    <li>High-quality microphone captures clear audio</li>
+                    <li>Stores recordings locally on SD card</li>
+                    <li>Syncs with your phone at the end of the day</li>
+                    <li>Automatic transcription of all recordings</li>
+                    <li>Sort into custom categories (Ideas, To-Dos, Recipes, etc.)</li>
+                    <li>Rechargeable battery lasts all day</li>
+                    <li>Small enough to keep in your pocket</li>
+                </ul>
+            </div>
+        </section>
 
-        <h2>Where is my data stored?</h2>
-        <p>All recordings and transcriptions are stored locally on your device. Audio files are saved to the app's private storage on your iPhone. Nothing is uploaded to any server, cloud service, or third-party platform. There is no Ramble backend, no database, and no server infrastructure.</p>
+        <div class="app-showcase">
+            <div class="container">
+                <div class="accent-line"></div>
+                <h2>Simple App, Powerful Organization</h2>
+                <p class="section-intro">
+                    After you sync, the app transcribes your voice notes and lets you organize them however makes sense to you. Create categories, search through your thoughts, and never lose an idea again.
+                </p>
+                <p class="section-intro" style="font-size: 0.875rem; color: var(--color-text-muted); font-style: italic; margin-top: -20px;">
+                    Note: App interface is a work in progress and subject to change.
+                </p>
+                <div class="app-screens">
+                    <div class="screen-item">
+                        <img src="app-home.jpg" alt="Ramble app home screen" id="app-home-img">
+                        <p class="screen-caption">Sync your recordings with one tap</p>
+                    </div>
+                    <div class="screen-item">
+                        <img src="app-categories.jpg" alt="Ramble app categories" id="app-categories-img">
+                        <p class="screen-caption">Organize into custom categories</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <h2>Does Ramble collect any personal information?</h2>
-        <p>No. Ramble does not collect, store, or transmit any personal information. There are no user accounts, no email addresses, no analytics, no tracking, and no advertising. Ramble does not use any third-party analytics or crash reporting services.</p>
+        <section>
+            <div class="container">
+                <div class="accent-line"></div>
+                <h2>What You Could Capture</h2>
+                <ul class="use-case-list">
+                    <li>Random ideas and insights that pop into your head</li>
+                    <li>Things to remember while walking, driving, or working out</li>
+                    <li>Interesting moments from podcasts you're listening to</li>
+                    <li>Names of people you meet that you don't want to forget</li>
+                    <li>Recipe ideas or cooking tips you think of on the fly</li>
+                    <li>To-dos that come to mind when your hands are busy</li>
+                    <li>Thoughts in the middle of night that you want to keep</li>
+                </ul>
+            </div>
+        </section>
 
-        <h2>Does Ramble share data with third parties?</h2>
-        <p>No. Your data never leaves your device. Ramble has no mechanism to share, sell, or transmit your recordings or any other data to any third party.</p>
+        <section>
+            <div class="container">
+                <div class="accent-line"></div>
+                <h2>Why We're Building It This Way</h2>
+                <div class="principle-grid">
+                    <div class="principle-item">
+                        <div class="principle-title">Don't Break Stride</div>
+                        <div class="principle-description">
+                            Just press a button. No pulling out your phone, unlocking it, finding an app. Capture the thought and keep moving.
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <div class="principle-title">Your Thoughts, Your System</div>
+                        <div class="principle-description">
+                            Create whatever categories make sense for you. Organize your thoughts the way your brain works, not the way an app tells you to.
+                        </div>
+                    </div>
+                    <div class="principle-item">
+                        <div class="principle-title">Actually Understand Yourself</div>
+                        <div class="principle-description">
+                            When you can save and review your thoughts over time, patterns emerge. You start to see how you actually think.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <h2>Transcription</h2>
-        <p>Ramble uses Apple's on-device Speech Recognition framework to transcribe your recordings. This processing happens entirely on your device. No audio is sent to external servers for transcription.</p>
+        <section>
+            <div class="container">
+                <div class="accent-line"></div>
+                <h2>The Device</h2>
+                <p class="section-intro">
+                    Compact, durable, and designed to be with you everywhere. Simple controls, long battery life, and built to handle daily use.
+                </p>
+                <div class="device-showcase">
+                    <div class="device-image">
+                        <img src="device-back.png" alt="Ramble device back view" id="device-back-img">
+                    </div>
+                    <div class="device-image">
+                        <img src="device-front.png" alt="Ramble device front view" id="device-front-img">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <h2>How can I delete my data?</h2>
-        <p>You can delete individual recordings within the app at any time. To remove all data, simply delete the Ramble app from your device — all recordings and app data will be permanently removed.</p>
-
-        <h2>Children's privacy</h2>
-        <p>Ramble does not knowingly collect any information from children. The app does not collect information from anyone — it stores recordings locally on the user's own device.</p>
-
-        <h2>Changes to this policy</h2>
-        <p>If this policy changes, the updated version will be posted at this URL with a revised date. As Ramble does not collect email addresses or have user accounts, this page is the sole means of communicating policy updates.</p>
-
-        <h2>Contact</h2>
-        <p>If you have questions about this privacy policy, you can reach me at <a class="contact-link" href="mailto:alfie@rambleapp.ie">alfie@rambleapp.ie</a>.</p>
-
-        <footer>
-            Ramble is built by Alfie Hales in Dublin, Ireland.
-        </footer>
+        <section id="status">
+            <div class="container">
+                <div class="accent-line"></div>
+                <h2>Where We're At</h2>
+                <p class="section-intro">
+                    Ramble is still in early development. We're refining the hardware, building the sync and transcription features, and testing how well it works in everyday situations.
+                </p>
+                <div class="status-bar">
+                    <div class="status-label">Current Status</div>
+                    <div class="status-text">
+                        We're building prototypes and working on the app that handles syncing, transcription, and organizing. This page exists to share the vision and see if it resonates with people who've also wished they could remember their own thoughts better.
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-tagline">
+                    A simple way to remember what matters to you.
+                </p>
+                <div class="footer-meta">Ramble — 2025</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
